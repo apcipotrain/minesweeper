@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>残局挑战 - 选择主题</title>
+    <link rel="stylesheet" href="../css/challenge_home.css">
+</head>
+
+<body>
+<!--全屏模糊背景-->
+<div class="bg-blur"></div>
+<button id="back-btn">返回</button>
+<!--卡片轮播容器-->
+<div class="carousel-wrapper">
+    <!--可横向滚动的元素-->
+    <div class="carousel" id="carousel">
+
+        <!--基础规则-->
+        <div class="card" data-chapter="1" data-target="basic">
+            <img src="../../assets/images/main_background0.png" class="card-img">
+            <div class="card-title">基础规则</div>
+        </div>
+
+        <!--进阶公式-->
+        <div class="card" data-chapter="2" data-target="formula">
+            <img src="../../assets/images/main_background1.png" class="card-img">
+            <div class="card-title">进阶公式</div>
+        </div>
+
+        <!--高难残局-->
+        <div class="card" data-chapter="3" data-target="hard">
+            <img src="../../assets/images/main_background2.png" class="card-img">
+            <div class="card-title">高难残局</div>
+        </div>
+    </div>
+</div>
+
+<!--脚本文件-->
+<script src="../js/challenge_home.js"></script>
+
+</body>
+</html>

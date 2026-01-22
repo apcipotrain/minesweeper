@@ -1,0 +1,55 @@
+/* 基础页面布局 */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Microsoft YaHei", sans-serif;
+    color: white;
+}
+
+/*设置全屏背景图*/
+body {
+    background-image: url("../assets/images/main_background0.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+}
+
+/*居中的欢迎界面内容*/
+.welcome-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);/*半透明黑框*/
+    padding: 40px 60px;
+    border-radius: 10px;/*控制黑色部分的圆滑程度*/
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(0, 123, 255, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*两个按钮的布局*/
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 80px;/*按钮间距*/
+    margin-top: 20px;
+}
+
+/*悬停效果*/
+button:hover {
+    background-color: rgba(0, 123, 255, 1);
+}

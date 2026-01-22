@@ -1,0 +1,218 @@
+/* === 🌿 页面全局背景 === */
+body {
+    margin: 0;      /*外边距*/
+    padding: 0;     /*内边距*/
+    height: 100vh;  /*视口高度*/
+    background: url("../assets/images/main_background0.png") center center / cover no-repeat fixed;
+    font-family: "Microsoft YaHei", "Segoe UI", sans-serif; /*字体族*/
+}
+
+/* === 🎮 游戏主容器 === */
+.game-wrapper {
+    display: flex;  /*显示方式->启用弹性布局*/
+    flex-direction: column; /*弹性方向->纵向*/
+    align-items: center;    /*垂直对齐方式->元素水平居中*/
+    justify-content: flex-start;    /*主轴对齐方式->从上往下排列*/
+    height: 100vh;  /*高度*/
+    /*backdrop-filter: blur(0px); /*背景模糊滤镜->毛玻璃效果*/
+}
+
+/* === 🧭 顶部控制栏 === */
+.top-bar {
+    display: flex;      /*显示模式*/
+    justify-content: space-between; /*主轴对齐方式->队伍左右分布方式，两端贴边，中间等距*/
+    align-items: center;/*垂直对齐方式->*/
+    width: 80%;         /*宽度占80%*/
+    margin: 22px 0;     /*外边距*/
+    font-size: 27px;    /*字体大小*/
+    color: #333;
+
+    flex: 0 0 auto;     /*顶栏高度固定，由内容决定*/
+}
+
+/*返回按钮*/
+.top-bar .top-btn {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 3px solid #aaa;   /*边框*/
+    border-radius: 9px;         /*边框圆角半径*/         
+    padding: 6px 15px;          /*内边距*/          
+    font-size: 24px;            /*字体大小*/
+    cursor: pointer;            /*鼠标指针样式*/
+    margin: 0;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;    /*过渡动画*/
+}
+.top-bar .top-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);     /*变换缩放，放大5%*/
+}
+
+.left-group {
+    display: flex;
+    gap: 15px;  /*横向排列间隔15px*/
+}
+.center-group {
+    /*flex: 1;    /*区域占据中间所有剩余空间*/
+    display: flex;
+    justify-content: center;    /*水平居中*/
+    align-items: center;    /*垂直居中*/
+    /*min-width: 160px;  /* 固定计时器区域宽度 */
+}
+.right-group {
+    display: flex;
+    justify-content: center;    /*水平居中*/
+    align-items: center;    /*垂直居中*/
+}
+
+/*计时器 & 剩余雷数显示*/
+.status-left, .status-right {
+    background: rgba(20, 20, 20, 0.7);
+    color: #00ff66;
+    font-family: "Consolas", monospace; /*字体族*/
+    padding: 8px 18px;                  /*内边距*/
+    border-radius: 9px;                 /*圆角边框半径*/
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);    /*盒子阴影*/
+}
+
+/* === 🧱 棋盘区域 === */
+#board {
+    flex: 0 0 auto;     /*顶栏高度固定，由内容决定*/
+    
+    margin-top: 22px;       /*外边距顶部*/
+    padding: 15px;          /*内边距*/
+    border-radius: 12px;     /*边框圆角半径*/
+    background: rgba(245, 245, 245, 0.35);      /*半透明灰色底*/
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);   /*盒子阴影*/
+
+    position: relative;
+    z-index: 10;
+    background: rgba(255,255,255,0.3);
+    display: inline-block;
+    vertical-align: top;
+    overflow: visible;     /* ✅ 防止行溢出被裁剪 */
+}
+
+/*每一行*/
+.row {
+    display: flex;
+    /*height: 42px; /* ✅ 每行固定高度 = 一个格子的高度 */
+
+    display: flex;
+    align-items: stretch; /* ✅ 子元素高度撑开行 */
+}
+
+/* === 🟩 未打开格子（厚实、凸起） === */
+.cell {
+    display: inline-block;   /* ✅ 新增：确保有高度 */
+    box-sizing: border-box;  /* ✅ 新增：避免边框撑开尺寸 */
+
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(100, 100, 100, 0.6); /*边框*/
+    background: rgba(190, 210, 190, 0.85);      
+    text-align: center; /*文字对齐-中心对齐*/
+    line-height: 42px;  /*行高，让格子里的文字垂直居中*/
+    font-weight: bold;  /*加粗数字*/
+    font-size: 24px;    /*字体大小*/
+    color: #222;
+    cursor: pointer;    /*鼠标指针样式*/
+    user-select: none;  /*用户选择行为，禁止文本被选中，防止拖鼠标选中文字*/
+    transition: background 0.15s, transform 0.1s;
+    box-shadow: inset -1px -1px 0 rgba(255,255,255,0.6), /*左上亮边，右下暗边*/
+                inset 1px 1px 0 rgba(0,0,0,0.3);        /*凸起阴影效果*/
+}
+/*鼠标悬浮*/
+.cell:hover {
+    background: rgba(220, 240, 220, 0.7);
+}
+
+/* === 🟦 已打开格子（更透明、凹陷） === */
+.cell.open {
+    background: rgba(245, 245, 245, 0.35);
+    border: 1px solid rgba(150, 150, 150, 0.5);
+    color: #000;
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,0.6),
+                inset -1px -1px 0 rgba(0,0,0,0.25);  /*凹陷阴影效果*/
+}
+
+/* === 🚩 插旗格 === */
+.cell.flag {
+    background: rgba(255, 220, 150, 0.8);
+    border: 1px solid rgba(180, 120, 0, 0.5);   /*边框*/
+    color: #d00;
+    font-size: 27px; /*字体大小*/
+    box-shadow: inset -1px -1px 0 rgba(255,255,255,0.6),
+                inset 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+/* === 💣 地雷格（踩雷） === */
+.cell.mine {
+    background: rgba(255, 80, 80, 0.85);
+    color: white;
+    animation: flash 0.5s;
+}
+@keyframes flash {
+    0% { background: rgba(255, 80, 80, 0.85);}
+    50% { background: rgba(255, 180, 180, 0.85);}
+    100% { background: rgba(255, 80, 80, 0.85);}
+}
+
+/* === 🔢 数字颜色（仿Win10扫雷） === */
+.cell.open[data-num='1'] { color: #0000ff; }
+.cell.open[data-num='2'] { color: #008000; }
+.cell.open[data-num='3'] { color: #ff0000; }
+.cell.open[data-num='4'] { color: #000080; }
+.cell.open[data-num='5'] { color: #800000; }
+.cell.open[data-num='6'] { color: #008080; }
+.cell.open[data-num='7'] { color: #000000; }
+.cell.open[data-num='8'] { color: #808080; }
+
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    height: 100vh;  /*高度占满整个窗口*/
+}
+
+
+/* === 📁 图片素材自定义接口 === */
+/* 
+  你可以在这里替换为自定义图片素材，比如：
+  -------------------------------------------------
+  .cell.flag {
+      background: url("../assets/flag.png") center center / cover no-repeat;
+      background-color: transparent;
+      border: none;
+  }
+
+  .cell.mine {
+      background: url("../assets/mine.png") center center / cover no-repeat;
+      background-color: transparent;
+  }
+
+  .status-left::before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: url("../assets/timer_icon.png") center / contain no-repeat;
+      margin-right: 4px;
+  }
+
+  .status-right::before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: url("../assets/bomb_icon.png") center / contain no-repeat;
+      margin-right: 4px;
+  }
+  -------------------------------------------------
+  ⚙️ 提示：
+  - 图片建议带透明背景（.png）
+  - 尺寸30px最佳
+  - 若想统一风格，可用扁平或卡通图标，与草地背景协调
+*/
