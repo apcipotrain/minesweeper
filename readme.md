@@ -635,6 +635,13 @@ showFeedback("success", levelData.successText);
 3. UI界面加工优化
 4. 现在整个开发的安全性几乎是0。
 
+如果你觉得这个项目对你有帮助，欢迎关注我的动态：
+
+* **CSDN**: [apcipot_rain-CSDN博客](https://blog.csdn.net/xinghuayu_lin?spm=1000.2115.3001.5343)
+* **哔哩哔哩**: [【minesweeper扫雷】残局挑战关卡讲解_哔哩哔哩 bilibili_扫雷](https://www.bilibili.com/video/BV1BWzkB5EPi/?spm_id_from=333.1387.upload.video_card.click&vd_source=d7dc9e1808edc3c6c6ab787ea4b4bfa0)
+
+* **GitHub**: [我的GitHub](https://github.com/apcipotrain)
+
 ------
 
 ## 💬 致谢
